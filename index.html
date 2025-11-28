@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Gallery</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="image-container">
+      <span style="--i: 1"> <img src="./image/image1.jpg" alt="" /></span>
+      <span style="--i: 2"> <img src="./image/image2.jpg" alt="" /></span>
+      <span style="--i: 3"> <img src="./image/image3.jpg" alt="" /></span>
+      <span style="--i: 4"> <img src="./image/image4.jfif" alt="" /></span>
+      <span style="--i: 5"> <img src="./image/image5.jpg" alt="" /></span>
+      <span style="--i: 6"> <img src="./image/image6.jpg" alt="" /></span>
+      <span style="--i: 7"> <img src="./image/image7.jpg" alt="" /></span>
+      <span style="--i: 7"> <img src="./image/image8.jpg" alt="" /></span>
+      <span style="--i: 8"> <img src="./image/image1.jpg" alt="" /></span>
+    </div>
+    <div class="btn-container">
+      <button class="btn" id="prev">prev</button>
+      <button class="btn" id="next">next</button>
+    </div>
+    <script>
+      const image = document.querySelector(".image-container");
+      const prev = document.getElementById("prev");
+      const next = document.getElementById("next");
+      let x = 0;
+      let timer;
+      prev.addEventListener("click", () => {
+        x = x + 45;
+        clearTimeout(timer);
+        updateGallery();
+      });
+      next.addEventListener("click", () => {
+        x = x - 45;
+        clearTimeout(timer);
+        updateGallery();
+      });
+      function updateGallery() {
+        image.style.transform = `perspective(1000px) rotateY(${x}deg)`;
+        timer = setTimeout(() => {
+          x = x - 45;
+          updateGallery();
+        }, 3000);
+      }
+      updateGallery();
+    </script>
+  </body>
+</html>
